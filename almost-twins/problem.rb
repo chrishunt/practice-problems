@@ -11,7 +11,7 @@ class Node
   end
 end
 
-def find_minimum(root_node, minimum=nil)
+def find_minimum(root_node)
   return root_node if root_node.left == nil
   find_minimum(root_node.left)
 end
