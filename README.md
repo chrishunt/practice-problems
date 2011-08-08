@@ -9,6 +9,13 @@ almost-twins
 Given a binary search tree and a value X, find the node with value immediately
 greater than X.
 
+fibonacci
+---------
+Given N, print the first N Fibonacci numbers. For example, `fib_sequence(6)` should
+return
+
+    0 1 1 2 3 5
+
 more-than-perms
 ---------------
 Given a set of letters and a length N, produce all possible output. (Not permutation).
@@ -20,7 +27,6 @@ output(in any order you want, not just my example order):
 Another example would be given `(a,b)` and length `2`:
 
     ab aa bb ba
-
 
 sum-of-evil
 -----------
