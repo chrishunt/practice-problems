@@ -28,6 +28,21 @@ Another example would be given `(a,b)` and length `2`:
 
     ab aa bb ba
 
+pivot
+-----
+Given an array of unsorted integers, find the pivot point `n` in the array where
+the sum of `input(0..n)` = sum of `input(n+1..input.size)`. Values in the input
+array may be positive or negative.
+
+For example, given the input:
+
+    [1,2,3,0,4,2]
+
+The pivot point would be `3`, the index of element with the value `0` because:
+
+    input[0] + input[1] + input[2] = input[4] + input [5]
+       1     +    2     +    3     =    4     +    2
+
 sum-of-evil
 -----------
 Given a number, come up with all of the possible ways to insert `+` and `-` in
