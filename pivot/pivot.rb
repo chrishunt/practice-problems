@@ -17,7 +17,7 @@ class PivotFinder
     @array = array
   end
 
-  def find_pivot
+  def pivot
     left = left_sum
     right = right_sum
     (0..@array.size).each do |i|
@@ -51,11 +51,20 @@ class PivotFinder
 end
 
 # Begin code test
-array = [1,7,-2,-10,4,3,-7]
-pf = PivotFinder.new array
 
-puts "Input: #{array}"
-puts "Left:  #{pf.left_sum}"
-puts "Right: #{pf.right_sum}"
-puts "Pivot: #{pf.find_pivot}"
+def test_array(array)
+  pf = PivotFinder.new array
+
+  puts "Input: #{array}"
+  puts "Left:  #{pf.left_sum}"
+  puts "Right: #{pf.right_sum}"
+  puts "Pivot: #{pf.pivot}"
+  puts
+end
+
+tests = [[1,2,3,0,4,2],
+         [1,7,-2,-10,4,3,-7]]
+tests.each do |array|
+  test_array array
+end
 
