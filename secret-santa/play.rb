@@ -1,4 +1,4 @@
-require './lib/santa.rb'
+require './lib/secret_santa.rb'
 
 people = ['thom',
           'sally',
