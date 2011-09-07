@@ -43,6 +43,18 @@ The pivot point would be `3`, the index of element with the value `0` because:
     input[0] + input[1] + input[2] = input[4] + input [5]
        1     +    2     +    3     =    4     +    2
 
+secret-santa
+------------
+Given an array of names, generate a hash that can be used for the 'secret santa'
+game. For example, given the array:
+
+    ['thom', 'sally', 'doug', 'steve']
+
+Some valid solutions may include:
+
+    {"thom"=>"sally", "sally"=>"steve", "steve"=>"doug", "doug"=>"thom"}
+    {"steve"=>"sally", "sally"=>"thom", "thom"=>"doug", "doug"=>"steve"}
+
 sum-of-evil
 -----------
 Given a number, come up with all of the possible ways to insert `+` and `-` in
