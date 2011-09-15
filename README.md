@@ -4,8 +4,17 @@ This is a collection of practice/interview questions I've heard and my solutions
 
 almost-twins
 ------------
-Given a binary search tree and a value X, find the node with value immediately
-greater than X.
+Given a binary search tree and a value `x`, find the node with value immediately
+greater than `x`. For example, given the following binary tree and value `x = 9`,
+your algorithm would return the root node with value `x = 10`.
+
+          10
+        /    \
+       7     15
+     /  \   /  \
+    4    9 11  20
+        /
+       8
 
 fibonacci
 ---------
