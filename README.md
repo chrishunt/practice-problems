@@ -1,8 +1,6 @@
 Practice Problems
 =================
-This is a collection of algorithm and data structure practice problems along
-with my solutions. Language does not matter. Some will probably be in Ruby, 
-while others may be in Java or Python for variety.
+This is a collection of practice/interview questions I've heard and my solutions.
 
 almost-twins
 ------------
