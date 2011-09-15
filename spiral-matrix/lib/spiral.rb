@@ -8,69 +8,75 @@ class Spiral
   end
 
   def spiral_array
-    ret = []
+    r = []
     @a = @array
-    while (!@a.nil? && @a.size > 0)
-      [:f_row, :r_col, :b_row, :l_col].each do |f|
-        tmp = method(f).call
+    while !@a.nil? && @a.size > 0
+      [:f_row, :r_col, :b_row, :l_col].each do |m|
+        tmp = method(m).call
         tmp ||= []
-        for c in tmp do; ret << c; end
+        tmp.each { |o| r << o }
       end
     end
-    ret
+
+    r
   end
 
   private
 
   def f_row
-    ret = []
+    r = []
     if @a.first.class == Array
-      ret = @a.first
+      r = @a.first
       @a = @a[1..@a.size]
     else
-      ret = @a
+      r = @a
       @a = []
     end
-    ret
+
+    r
   end
 
   def r_col
-    ret = []
+    r = []
     if @a.first.class == Array
-      @a.each_with_index do |r, i|
-        ret << r.last
+      @a.each_with_index do |o, i|
+        r << o.last
         @a[i] = @a[i].size > 1 ? @a[i][0..@a[i].size-2] : []
       end
     else
-      ret = @a.last
+      r = @a.last
       @a = @a[0..@a.size-2]
     end
-    ret
+
+    r
   end
 
   def b_row
-    ret = []
+    r = []
     if @a.first.class == Array
-      ret = @a.last.reverse
+      r = @a.last.reverse
       @a = @a.size > 1 ? @a[0..@a.size-2] : []
     else
-      ret = @a.reverse
+      r = @a.reverse
       @a = []
     end
-    ret
+
+    r
   end
 
   def l_col
-    ret = []
+    r = []
     if @a.first.class == Array
-      @a.reverse.each_with_index do |r, i|
-        ret << r.first
-        @a[@a.size-1-i] = @a[@a.size-1-i][1..@a[@a.size-1-i].size]
+      @a.reverse.each_with_index do |o, i|
+        r << o.first
+        ri = @a.size-1-i
+        @a[ri] = @a[ri][1..@a[ri].size]
       end
     else
-      ret = @a.first
+      r = @a.first
       @a = @a[1..@a.size]
     end
-    ret
+
+    r
   end
 end
