@@ -55,6 +55,18 @@ Some valid solutions may include:
     {"thom"=>"sally", "sally"=>"steve", "steve"=>"doug", "doug"=>"thom"}
     {"steve"=>"sally", "sally"=>"thom", "thom"=>"doug", "doug"=>"steve"}
 
+spiral-matrix
+-------------
+Print a 2D int matrix in sprial order. For example, given the array:
+
+    [[1,2,3],
+     [4,5,6],
+     [7,8,9]]
+
+Return the solution:
+
+    [1,2,3,6,9,8,7,4,5]
+
 sum-of-evil
 -----------
 Given a number, come up with all of the possible ways to insert `+` and `-` in
