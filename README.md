@@ -50,6 +50,14 @@ The pivot point would be `3`, the index of element with the value `0` because:
     input[0] + input[1] + input[2] = input[4] + input [5]
        1     +    2     +    3     =    4     +    2
 
+primes
+------
+Write a function that accepts an integer `n` and returns a list of all prime
+numbers between 1 and `n`. For example, given the input `n = 10`, the function
+would return:
+
+    [1, 2, 3, 5, 7]
+
 secret-santa
 ------------
 Given an array of names, generate a hash that can be used for the 'secret santa'
