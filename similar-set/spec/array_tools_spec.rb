@@ -1,7 +1,7 @@
 require 'array_tools.rb'
 
-describe ArrayTools, '#simular_set' do
-  subject { ArrayTools.simular_set(one, two) }
+describe ArrayTools, '#similar_set' do
+  subject { ArrayTools.similar_set(one, two) }
 
   context 'when there are no matches' do
     let(:one)    { [1, 2, 3] }
