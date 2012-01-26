@@ -70,6 +70,18 @@ Some valid solutions may include:
     {"thom"=>"sally", "sally"=>"steve", "steve"=>"doug", "doug"=>"thom"}
     {"steve"=>"sally", "sally"=>"thom", "thom"=>"doug", "doug"=>"steve"}
 
+Similar Set
+-----------
+Given two arrays, return a new array containing those elements which the two
+arrays have in common. For example, given the arrays:
+
+    [1, 2, 'a', 'b']
+    [2, 3, 'b', 'c']
+
+The returned array would be:
+
+    [2, 'b']
+
 Spiral Matrix
 -------------
 Print a 2D int matrix in sprial order. For example, given the array:
