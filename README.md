@@ -58,6 +58,14 @@ would return:
 
     [1, 2, 3, 5, 7]
 
+Reorder Priority
+----------------
+Given any input text and a 'preference string', organize the characters in the
+input text to match the priority of the characters in the preference string.
+For example, given the input text `banana` and the preference string `can`,
+return the string `aaannb`. Given the input text `house` and the preference
+string `soup`, two possible solutions would be `soueh` or `souhe`.
+
 Secret Santa
 ------------
 Given an array of names, generate a hash that can be used for the 'secret santa'
