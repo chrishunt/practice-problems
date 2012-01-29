@@ -83,8 +83,8 @@ game. For example, given the array:
 
 Some valid solutions may include:
 
-    {"thom"=>"sally", "sally"=>"steve", "steve"=>"doug", "doug"=>"thom"}
-    {"steve"=>"sally", "sally"=>"thom", "thom"=>"doug", "doug"=>"steve"}
+    { "thom"  => "sally", "sally" => "steve", "steve" => "doug", "doug" => "thom"  }
+    { "steve" => "sally", "sally" => "thom" , "thom"  => "doug", "doug" => "steve" }
 
 Similar Set
 -----------
