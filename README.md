@@ -19,9 +19,17 @@ your algorithm would return the root node with value `x = 10`.
 Fibonacci
 ---------
 Given N, print the first N Fibonacci numbers. For example, `fib_sequence(6)` should
-return
+return:
 
     0 1 1 2 3 5
+
+Minimum Match
+-------------
+Given an input text and a set of characters, return the shortest substring of the
+input text which contains those characters. For example, given the input text
+`abbcabbbc` and the characters `abc`, return the string:
+
+    abbc
 
 More Than Perms
 ---------------
