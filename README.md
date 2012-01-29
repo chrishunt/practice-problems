@@ -51,7 +51,7 @@ array may be positive or negative.
 
 For example, given the input:
 
-    [1,2,3,0,4,2]
+    [1, 2, 3, 0, 4, 2]
 
 The pivot point would be `3`, the index of element with the value `0` because:
 
@@ -102,13 +102,13 @@ Spiral Matrix
 -------------
 Print a 2D int matrix in sprial order. For example, given the array:
 
-    [[1,2,3],
-     [4,5,6],
-     [7,8,9]]
+    [[1 ,2, 3],
+     [4 ,5, 6],
+     [7 ,8, 9]]
 
 Return the solution:
 
-    [1,2,3,6,9,8,7,4,5]
+    [1, 2, 3, 6, 9, 8, 7, 4, 5]
 
 Sum Of Evil
 -----------
