@@ -66,6 +66,14 @@ would return:
 
     [1, 2, 3, 5, 7]
 
+Reorder Priority
+----------------
+Given any input text and a 'preference string', organize the characters in the
+input text to match the priority of the characters in the preference string.
+For example, given the input text `banana` and the preference string `can`,
+return the string `aaannb`. Given the input text `house` and the preference
+string `soup`, two possible solutions would be `soueh` or `souhe`.
+
 Reverse Polish Notation
 -----------------------
 Reverse Polish Notation (RPN) is a mathematical notation wherein every operator
@@ -76,14 +84,6 @@ operands and operators and returns the result. Here are some examples:
     rpn(['5', '1', '-'])            => 4
     rpn(['2', '3', '+', '5', '*'])  => 25
     rpn(['2', '3', '5', '+', '*'])  => 16
-
-Reorder Priority
-----------------
-Given any input text and a 'preference string', organize the characters in the
-input text to match the priority of the characters in the preference string.
-For example, given the input text `banana` and the preference string `can`,
-return the string `aaannb`. Given the input text `house` and the preference
-string `soup`, two possible solutions would be `soueh` or `souhe`.
 
 Secret Santa
 ------------
