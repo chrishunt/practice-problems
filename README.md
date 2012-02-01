@@ -72,10 +72,10 @@ Reverse Polish Notation (RPN) is a mathematical notation wherein every operator
 follows all of its operands. Write a a function `rpn` that accepts an array of
 operands and operators and returns the result. Here are some examples:
 
-  rpn(['2', '3', '+'])             => 5
-  rpn(['5', '1', '-'])             => 4
-  rpn(['2', '3', '+', '5', '\*'])  => 25
-  rpn(['2', '3', '5', '+', '\*'])  => 16
+    rpn(['2', '3', '+'])            => 5
+    rpn(['5', '1', '-'])            => 4
+    rpn(['2', '3', '+', '5', '*'])  => 25
+    rpn(['2', '3', '5', '+', '*'])  => 16
 
 Reorder Priority
 ----------------
