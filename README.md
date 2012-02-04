@@ -23,6 +23,28 @@ return:
 
     0 1 1 2 3 5
 
+Luhn Algorithm
+--------------
+The Luhn algorithm, also known as the "mod 10" algorithm, is a simple checksum
+formula used to validate a variety of identification numbers. Given a numeric
+input, the algorithm works as follows:
+
+  1. Counting from the check digit, which is the rightmost, and moving left,
+  double the value of every second digit.
+
+  2. Sum the digits of the products (e.g., `10 = 1 + 0 = 1, 14 = 1 + 4 = 5`)
+  together with the undoubled digits from the original number.
+
+  3. If the total modulo 10 is equal to 0 (if the total ends in zero) then the
+  number is valid according to the Luhn formula; else it is not valid.
+
+Here are some example inputs:
+
+    luhn?('42')   => true
+    luhn?('9001') => true
+    luhn?('43')   => false
+    luhn?('0175') => false
+
 Minimum Match
 -------------
 Given an input text and a set of characters, return the shortest substring of the
