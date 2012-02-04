@@ -40,10 +40,10 @@ input, the algorithm works as follows:
 
 Here are some example inputs:
 
-    luhn?('42')   => true
-    luhn?('9001') => true
-    luhn?('43')   => false
-    luhn?('0175') => false
+    luhn?('42')   => true    # 2 + 8 = 10
+    luhn?('9001') => true    # 1 + 0 + 0 + (1 + 8) = 10
+    luhn?('43')   => false   # 3 + 8 = 11
+    luhn?('0175') => false   # 5 + (1 + 4) + 1 + 0 = 11
 
 Minimum Match
 -------------
