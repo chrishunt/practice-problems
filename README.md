@@ -65,6 +65,18 @@ Another example would be given `(a,b)` and length `2`:
 
     ab aa bb ba
 
+Palindrome
+----------
+A palindrome is a word or phrase that can be read the same forwards and backwards. Some
+examples of palindromes include:
+
+    race car
+    dad
+    A man, a plan, a canal, Panama
+
+Write a method that returns `true` when a String is a palindrome, `false` otherwise.
+Remember to ignore white space, punctuation, and letter case.
+
 Pivot
 -----
 Given an array of unsorted integers, find the pivot point `n` in the array where
