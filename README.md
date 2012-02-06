@@ -16,6 +16,16 @@ your algorithm would return the root node with value `x = 10`.
         /
        8
 
+Decimal to Binary
+-----------------
+Given an Integer, return the binary representation of that Integer as a String.
+For example:
+
+    0.to_b  => '0'
+    2.to_b  => '10'
+    6.to_b  => '110'
+    28.to_b => '11100'
+
 Fibonacci
 ---------
 Given N, print the first N Fibonacci numbers. For example, `fib_sequence(6)` should
