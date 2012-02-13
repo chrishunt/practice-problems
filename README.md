@@ -33,6 +33,17 @@ return:
 
     0 1 1 2 3 5
 
+Job Queue
+---------
+Write a Ruby job queue that excepts a delay duration and a block, similar to
+Javascript's `setTimout` method. Once the jobs have been added to the queue,
+provide a method to start the worker. For example:
+
+    TaskMan.queue(2.5) { print 'world!' }
+    TaskMan.queue(1.0) { print 'hello ' }
+
+    TaskMan.work => 'hello world!'
+
 Luhn Algorithm
 --------------
 The Luhn algorithm, also known as the "mod 10" algorithm, is a simple checksum
