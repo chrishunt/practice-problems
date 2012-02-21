@@ -1,0 +1,9 @@
+61
+
+RT 135
+FD 5
+REPEAT 2 [ RT 90 FD 15 ]
+RT 90
+FD 5
+RT 45
+FD 20
