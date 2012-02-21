@@ -25,8 +25,10 @@ describe Turtle do
   # turtle.bk
   # turtle.repeat 2 do; end;
 
+  let(:turtle) { Turtle.new(11) }
+
   it 'can be initialized with a grid size' do
-    Turtle.new(11).size.should == 11
+    turtle.size.should == 11
   end
 
   it "defaults it's position to the center of the grid" do
@@ -36,38 +38,120 @@ describe Turtle do
   end
 
   it "defaults it's direction to zero degrees (up)" do
-    Turtle.new(11).direction.should == 0
+    turtle.direction.should == 0
   end
 
   describe '#rt' do
     it 'can rotate 45 degrees to the right' do
-      turtle = Turtle.new(11)
       turtle.rt(45)
       turtle.direction.should == 45
     end
 
-    it 'can rotate 90 degrees to the right' do
-      turtle = Turtle.new(11)
-      turtle.rt(90)
-      turtle.direction.should == 90
-    end
-
     it 'can rotate 360 degrees to the right' do
-      turtle = Turtle.new(11)
       turtle.rt(360)
       turtle.direction.should == 0
     end
 
     it 'can rotate 495 degrees to the right' do
-      turtle = Turtle.new(11)
       turtle.rt(495)
       turtle.direction.should == 135
     end
 
     it 'can rotate 810 degrees to the right' do
-      turtle = Turtle.new(11)
       turtle.rt(810)
       turtle.direction.should == 90
+    end
+
+    it 'handles multiple rotations' do
+      turtle.rt(90)
+      turtle.rt(45)
+      turtle.direction.should == 135
+    end
+  end
+
+  describe '#lt' do
+    it 'can rotate 45 degrees to the left' do
+      turtle.lt(45)
+      turtle.direction.should == 315
+    end
+
+    it 'can rotate 360 degrees to the left' do
+      turtle.lt(360)
+      turtle.direction.should == 0
+    end
+
+    it 'can rotate 495 degrees to the left' do
+      turtle.lt(495)
+      turtle.direction.should == 225
+    end
+
+    it 'can rotate 810 degrees to the left' do
+      turtle.lt(810)
+      turtle.direction.should == 270
+    end
+
+    it 'handles multiple rotations' do
+      turtle.lt(90)
+      turtle.lt(45)
+      turtle.direction.should == 225
+    end
+  end
+
+  describe '#rotate' do
+    it 'can rotate 45 degrees' do
+      turtle.send(:rotate, 45)
+      turtle.direction.should == 45
+    end
+
+    it 'can rotate 90 degrees' do
+      turtle.send(:rotate, 90)
+      turtle.direction.should == 90
+    end
+
+    it 'can rotate 360 degrees' do
+      turtle.send(:rotate, 360)
+      turtle.direction.should == 0
+    end
+
+    it 'can rotate 495 degrees' do
+      turtle.send(:rotate, 495)
+      turtle.direction.should == 135
+    end
+
+    it 'can rotate 810 degrees' do
+      turtle.send(:rotate, 810)
+      turtle.direction.should == 90
+    end
+
+    it 'can rotate -45 degrees' do
+      turtle.send(:rotate, -45)
+      turtle.direction.should == 315
+    end
+
+    it 'can rotate -90 degrees' do
+      turtle.send(:rotate, -90)
+      turtle.direction.should == 270
+    end
+
+    it 'can rotate -360 degrees' do
+      turtle.send(:rotate, -360)
+      turtle.direction.should == 0
+    end
+
+    it 'can rotate -495 degrees' do
+      turtle.send(:rotate, -495)
+      turtle.direction.should == 225
+    end
+
+    it 'can rotate -810 degrees' do
+      turtle.send(:rotate, -810)
+      turtle.direction.should == 270
+    end
+
+    it 'handles multiple rotations' do
+      turtle.send(:rotate, 90)
+      turtle.send(:rotate, 45)
+      turtle.direction.should == 135
     end
   end
 end
