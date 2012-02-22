@@ -19,7 +19,6 @@ describe Turtle do
   #     RT 45
   #     FD 20
 
-  # turtle.fd
   # turtle.bk
   # turtle.repeat 2 do; end;
 
@@ -192,7 +191,7 @@ describe Turtle do
       x, y = turtle.position
       turtle.rt(225)
       turtle.fd(2)
-      turtle.position.should == [x - 2, y + 2]
+      turtle.position.should == [x - 2, y - 2]
     end
 
     it 'moves the turtle forward when facing 270 degress' do
@@ -212,7 +211,6 @@ describe Turtle do
     it 'stops when it reaches the top of the canvas' do
       turtle.fd(100)
       x, y = turtle.position
-      x.should < turtle.size
       y.should < turtle.size
     end
 
@@ -220,16 +218,14 @@ describe Turtle do
       turtle.rt(180)
       turtle.fd(100)
       x, y = turtle.position
-      x.should >= 0
       y.should >= 0
     end
 
-    it 'stops when it reaches the left of the canvas' do
+    it 'stops when it reaches the right of the canvas' do
       turtle.rt(90)
       turtle.fd(100)
       x, y = turtle.position
       x.should < turtle.size
-      y.should < turtle.size
     end
 
     it 'stops when it reaches the left of the canvas' do
@@ -237,7 +233,90 @@ describe Turtle do
       turtle.fd(100)
       x, y = turtle.position
       x.should >= 0
+    end
+  end
+
+  describe '#bk' do
+    it 'moves the turtle forward when facing 0 degress' do
+      x, y = turtle.position
+      turtle.bk(2)
+      turtle.position.should == [x, y - 2]
+    end
+
+    it 'moves the turtle forward when facing 45 degress' do
+      x, y = turtle.position
+      turtle.rt(45)
+      turtle.bk(2)
+      turtle.position.should == [x - 2, y - 2]
+    end
+
+    it 'moves the turtle forward when facing 90 degress' do
+      x, y = turtle.position
+      turtle.rt(90)
+      turtle.bk(2)
+      turtle.position.should == [x - 2, y]
+    end
+
+    it 'moves the turtle forward when facing 135 degress' do
+      x, y = turtle.position
+      turtle.rt(135)
+      turtle.bk(2)
+      turtle.position.should == [x - 2, y + 2]
+    end
+
+    it 'moves the turtle forward when facing 180 degress' do
+      x, y = turtle.position
+      turtle.rt(180)
+      turtle.bk(2)
+      turtle.position.should == [x, y + 2]
+    end
+
+    it 'moves the turtle forward when facing 225 degress' do
+      x, y = turtle.position
+      turtle.rt(225)
+      turtle.bk(2)
+      turtle.position.should == [x + 2, y + 2]
+    end
+
+    it 'moves the turtle forward when facing 270 degress' do
+      x, y = turtle.position
+      turtle.rt(270)
+      turtle.bk(2)
+      turtle.position.should == [x + 2, y]
+    end
+
+    it 'moves the turtle forward when facing 315 degress' do
+      x, y = turtle.position
+      turtle.rt(315)
+      turtle.bk(2)
+      turtle.position.should == [x + 2, y - 2]
+    end
+
+    it 'stops when it reaches the bottom of the canvas' do
+      turtle.bk(100)
+      x, y = turtle.position
       y.should >= 0
+    end
+
+    it 'stops when it reaches the top of the canvas' do
+      turtle.rt(180)
+      turtle.bk(100)
+      x, y = turtle.position
+      y.should < turtle.size
+    end
+
+    it 'stops when it reaches the left of the canvas' do
+      turtle.rt(90)
+      turtle.bk(100)
+      x, y = turtle.position
+      x.should >= 0
+    end
+
+    it 'stops when it reaches the right of the canvas' do
+      turtle.rt(270)
+      turtle.bk(100)
+      x, y = turtle.position
+      x.should < turtle.size
     end
   end
 end

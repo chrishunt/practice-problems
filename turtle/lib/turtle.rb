@@ -21,6 +21,11 @@ class Turtle
     place_in_bounds
   end
 
+  def bk(steps)
+    step_in_direction(-steps)
+    place_in_bounds
+  end
+
   private
 
   def rotate(degrees)
@@ -43,7 +48,7 @@ class Turtle
     when 180
       [x, y - steps]
     when 225
-      [x - steps, y + steps]
+      [x - steps, y - steps]
     when 270
       [x - steps, y]
     when 315
