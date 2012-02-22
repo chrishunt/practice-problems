@@ -1,34 +1,52 @@
 require 'turtle'
 
 describe Turtle do
-  # The turtle is initially placed in the center of the grid and is facing upwards:
-  #
-  #     61
-  #
-  #     RT 135
-  #     FD 5
-  #     REPEAT 2 [ RT 90 FD 15 ]
-  #     RT 90
-  #     FD 5
-  #     RT 45
-  #     FD 20
-
-  # turtle.repeat 2 do; end;
-
   let(:turtle) { Turtle.new(11) }
 
-  it 'can be initialized with a grid size' do
+  it 'can be initialized with a canvas size' do
     turtle.size.should == 11
   end
 
-  it "defaults it's position to the center of the grid" do
+  it 'starts with a single marked pixel on the canvas' do
+    count = 0
+    turtle.canvas.each do |column|
+      column.each do |pixel|
+        count += 1 if pixel == true
+      end
+    end
+    count.should == 1
+  end
+
+  it "defaults it's position to the center of the canvas" do
     [Turtle.new(11), Turtle.new(12)].each do |turtle|
-      turtle.position.should == [6, 6]
+      turtle.position.should == [5, 5]
     end
   end
 
   it "defaults it's direction to zero degrees (up)" do
     turtle.direction.should == 0
+  end
+
+  describe '#draw' do
+    it 'draws the image on the canvas' do
+      turtle = Turtle.new(5)
+      turtle.draw <<-STEPS
+          RT 90
+          FD 1
+          REPEAT 2 [ RT 45 ]
+          FD 2
+          REPEAT 2 [ LT 45 ]
+          FD 1
+          RT 180
+          FD 2
+      STEPS
+      turtle.canvas.should == [
+        [false, false, false, false, false],
+        [false, false, false, false, false],
+        [true , false, true , false, false],
+        [true , true , true , false, false],
+        [true , false, false, false, false]]
+    end
   end
 
   describe '#rt' do
@@ -146,6 +164,24 @@ describe Turtle do
   end
 
   describe '#fd' do
+    it 'draws on traveled areas of the canvas' do
+      turtle = Turtle.new(5)
+      turtle.rt(90)
+      turtle.fd(1)
+      turtle.rt(90)
+      turtle.fd(2)
+      turtle.lt(90)
+      turtle.fd(1)
+      turtle.rt(180)
+      turtle.fd(2)
+      turtle.canvas.should == [
+        [false, false, false, false, false],
+        [false, false, false, false, false],
+        [true , false, true , false, false],
+        [true , true , true , false, false],
+        [true , false, false, false, false]]
+    end
+
     it 'moves the turtle forward when facing 0 degress' do
       x, y = turtle.position
       turtle.fd(2)
@@ -230,6 +266,23 @@ describe Turtle do
   end
 
   describe '#bk' do
+    it 'draws on traveled areas of the canvas' do
+      turtle = Turtle.new(5)
+      turtle.lt(90)
+      turtle.bk(1)
+      turtle.rt(90)
+      turtle.bk(2)
+      turtle.lt(90)
+      turtle.bk(1)
+      turtle.rt(180)
+      turtle.bk(2)
+      turtle.canvas.should == [
+        [false, false, false, false, false],
+        [false, false, false, false, false],
+        [true , false, true , false, false],
+        [true , true , true , false, false],
+        [true , false, false, false, false]]
+    end
     it 'moves the turtle forward when facing 0 degress' do
       x, y = turtle.position
       turtle.bk(2)
@@ -318,6 +371,45 @@ describe Turtle do
       count = 0
       turtle.repeat(3) { count += 1 }
       count.should == 3
+    end
+
+    it 'handles rotate commands' do
+      turtle.repeat(2) { turtle.rt(45) }
+      turtle.direction.should == 90
+    end
+  end
+
+  describe '#execute' do
+    it 'works with lowercase commands' do
+      turtle.execute('rt 90')
+      turtle.direction.should == 90
+    end
+
+    it 'works correctly for right turns' do
+      turtle.execute('RT 90')
+      turtle.direction.should == 90
+    end
+
+    it 'works correctly for left turns' do
+      turtle.execute('LT 90')
+      turtle.direction.should == 270
+    end
+
+    it 'works correctly for taking forward steps' do
+      x, y = turtle.position
+      turtle.execute('FD 3')
+      turtle.position.should == [x, y + 3]
+    end
+
+    it 'works correctly for taking backward steps' do
+      x, y = turtle.position
+      turtle.execute('BK 2')
+      turtle.position.should == [x, y - 2]
+    end
+
+    it 'works correctly for single item repeat blocks' do
+      turtle.execute('REPEAT 2 [ RT 45 ]')
+      turtle.direction.should == 90
     end
   end
 end

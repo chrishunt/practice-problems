@@ -1,11 +1,13 @@
 class Turtle
-  attr_reader :size, :position, :direction
+  attr_reader :size, :position, :direction, :canvas
 
   def initialize(size)
-    center = size - size/2
+    center = size - size/2 - 1
     @position = [center, center]
     @direction = 0
     @size = size
+    @canvas = Array.new(@size) { Array.new(@size) {false} }
+    draw_pixel
   end
 
   def rt(degrees)
@@ -18,16 +20,33 @@ class Turtle
 
   def fd(steps)
     step_in_direction(steps)
-    place_in_bounds
   end
 
   def bk(steps)
     step_in_direction(-steps)
-    place_in_bounds
   end
 
   def repeat(times, &instructions)
     1.upto(times) { instructions.call }
+  end
+
+  def execute(command)
+    words = command.split(' ')
+    if words.size == 2
+      method, param = words
+      self.send(method.downcase, param.to_i)
+    else
+      1.upto(words[1].to_i) do
+        commands = words[3..words.size-2]
+        execute(commands.shift(2).join(' ')) while commands.size > 0
+      end
+    end
+  end
+
+  def draw(commands)
+    commands.lines.each do |command|
+      execute(command)
+    end
   end
 
   private
@@ -39,34 +58,46 @@ class Turtle
   end
 
   def step_in_direction(steps)
-    x, y = @position
-    @position = case direction
-    when 0
-      [x, y + steps]
-    when 45
-      [x + steps, y + steps]
-    when 90
-      [x + steps, y]
-    when 135
-      [x + steps, y - steps]
-    when 180
-      [x, y - steps]
-    when 225
-      [x - steps, y - steps]
-    when 270
-      [x - steps, y]
-    when 315
-      [x - steps, y + steps]
+    increment = steps < 0 ? -1 : 1
+    steps = steps < 0 ? -steps : steps
+
+    1.upto(steps) do
+      x, y = @position
+      @position = case direction
+      when 0
+        [x, y + increment]
+      when 45
+        [x + increment, y + increment]
+      when 90
+        [x + increment, y]
+      when 135
+        [x + increment, y - increment]
+      when 180
+        [x, y - increment]
+      when 225
+        [x - increment, y - increment]
+      when 270
+        [x - increment, y]
+      when 315
+        [x - increment, y + increment]
+      end
+
+      place_in_bounds
+      draw_pixel
     end
   end
 
   def place_in_bounds
     x, y = @position
-    y = @size - 1 if y > @size
+    y = @size - 1 if y >= @size
     y = 0 if y < 0
-    x = @size - 1 if x > @size
+    x = @size - 1 if x >= @size
     x = 0 if x < 0
     @position = [x, y]
   end
 
+  def draw_pixel
+    x, y = @position
+    @canvas[x][y] = true
+  end
 end
