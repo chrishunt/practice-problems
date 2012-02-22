@@ -2,12 +2,11 @@ class Turtle
   attr_reader :size, :position, :direction, :canvas
 
   def initialize(size)
-    center = size - size/2 - 1
-    @position = [center, center]
-    @direction = 0
+    center = (size - size/2) - 1
     @size = size
-    @canvas = Array.new(@size) { Array.new(@size) {false} }
-    draw_pixel
+    @direction = 0
+    @canvas = new_canvas
+    update_position(center, center)
   end
 
   def rt(degrees)
@@ -19,15 +18,44 @@ class Turtle
   end
 
   def fd(steps)
-    step_in_direction(steps)
+    walk(steps)
   end
 
   def bk(steps)
-    step_in_direction(-steps)
+    walk(-steps)
   end
 
-  def repeat(times, &instructions)
-    1.upto(times) { instructions.call }
+  def draw(commands)
+    commands.lines.each { |command| execute(command) }
+  end
+
+  def to_s
+    s = ''
+    oriented_canvas.each do |column|
+      column.each do |pixel|
+        char = pixel ? 'X' : '.'
+        s += "#{char} "
+      end
+      s = s.strip + "\n"
+    end
+    s.strip
+  end
+
+  private
+
+  def new_canvas
+    Array.new(@size) { Array.new(@size) {false} }
+  end
+
+  def update_position(x, y)
+    @position = place_in_canvas_bounds(x, y)
+    update_canvas
+  end
+
+  def rotate(degrees)
+    @direction += degrees
+    @direction += 360 while @direction < 0
+    @direction -= 360 while @direction >= 360
   end
 
   def execute(command)
@@ -43,81 +71,46 @@ class Turtle
     end
   end
 
-  def draw(commands)
-    commands.lines.each { |command| execute(command) }
-  end
-
-  def to_s
-    s = ''
-    translate_canvas.each do |column|
-      column.each do |pixel|
-        char = pixel ? 'X' : '.'
-        s += "#{char} "
-      end
-      s = s.strip + "\n"
-    end
-    s.strip
-  end
-
-  private
-
-  def rotate(degrees)
-    @direction += degrees
-    @direction += 360 while @direction < 0
-    @direction -= 360 while @direction >= 360
-  end
-
-  def step_in_direction(steps)
-    increment = steps < 0 ? -1 : 1
+  def walk(steps)
+    x, y  = @position
+    step  = steps < 0 ? -1 : 1
     steps = steps < 0 ? -steps : steps
 
     1.upto(steps) do
-      x, y = @position
-      @position = case direction
-      when 0
-        [x, y + increment]
-      when 45
-        [x + increment, y + increment]
-      when 90
-        [x + increment, y]
-      when 135
-        [x + increment, y - increment]
-      when 180
-        [x, y - increment]
-      when 225
-        [x - increment, y - increment]
-      when 270
-        [x - increment, y]
-      when 315
-        [x - increment, y + increment]
+      x, y = case direction
+        when 0;   [x,        y + step]
+        when 45;  [x + step, y + step]
+        when 90;  [x + step, y       ]
+        when 135; [x + step, y - step]
+        when 180; [x,        y - step]
+        when 225; [x - step, y - step]
+        when 270; [x - step, y       ]
+        when 315; [x - step, y + step]
       end
-
-      place_in_bounds
-      draw_pixel
+      update_position(x, y)
     end
   end
 
-  def place_in_bounds
-    x, y = @position
-    y = @size - 1 if y >= @size
-    y = 0 if y < 0
-    x = @size - 1 if x >= @size
-    x = 0 if x < 0
-    @position = [x, y]
-  end
-
-  def draw_pixel
+  def update_canvas
     x, y = @position
     @canvas[x][y] = true
   end
 
-  def translate_canvas
-    translated = Array.new(@size) { Array.new(@size) { false } }
+  def place_in_canvas_bounds(x, y)
+    x = 0 if x < 0
+    y = 0 if y < 0
+    x = @size - 1 if x >= @size
+    y = @size - 1 if y >= @size
+    [x, y]
+  end
+
+  def oriented_canvas
+    oriented = new_canvas
     @canvas.each_with_index do |column, i|
       column.each_with_index do |pixel, j|
-        translated[@size-1-j][i] = pixel
+        oriented[@size-1-j][i] = pixel
       end
     end
-    translated
+    oriented
   end
 end
