@@ -1,12 +1,6 @@
 require 'turtle'
 
 describe Turtle do
-  # FD x: move forward by x units
-  # RT x: change the turtle's current orientation by x degrees clockwise
-  # LT x: change the turtle's current orientation by x degrees counterclockwise
-  # BK x: move backwards by x units, keeping its current orientation
-  # REPEAT x [...]: repeat the movements defined within the square brackets x times.
-  #
   # The turtle is initially placed in the center of the grid and is facing upwards:
   #
   #     61
@@ -19,7 +13,6 @@ describe Turtle do
   #     RT 45
   #     FD 20
 
-  # turtle.bk
   # turtle.repeat 2 do; end;
 
   let(:turtle) { Turtle.new(11) }
@@ -317,6 +310,14 @@ describe Turtle do
       turtle.bk(100)
       x, y = turtle.position
       x.should < turtle.size
+    end
+  end
+
+  describe '#repeat' do
+    it 'executes the provided block the correct amount of times' do
+      count = 0
+      turtle.repeat(3) { count += 1 }
+      count.should == 3
     end
   end
 end

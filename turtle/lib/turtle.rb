@@ -26,6 +26,10 @@ class Turtle
     place_in_bounds
   end
 
+  def repeat(times, &instructions)
+    1.upto(times) { instructions.call }
+  end
+
   private
 
   def rotate(degrees)
