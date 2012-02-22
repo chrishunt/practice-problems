@@ -10,9 +10,7 @@ describe Turtle do
   it 'starts with a single marked pixel on the canvas' do
     count = 0
     turtle.canvas.each do |column|
-      column.each do |pixel|
-        count += 1 if pixel == true
-      end
+      column.each { |pixel| count += 1 if pixel == true }
     end
     count.should == 1
   end
@@ -46,6 +44,28 @@ describe Turtle do
         [true , false, true , false, false],
         [true , true , true , false, false],
         [true , false, false, false, false]]
+    end
+  end
+
+  describe '#to_s' do
+    it 'renders the canvas to string' do
+      turtle = Turtle.new(5)
+      turtle.draw <<-STEPS
+          RT 90
+          FD 1
+          REPEAT 2 [ RT 45 ]
+          FD 2
+          REPEAT 2 [ LT 45 ]
+          FD 1
+          RT 180
+          FD 2
+      STEPS
+      turtle.to_s.should == "" +
+       ". . . . .\n" +
+       ". . . . .\n" +
+       ". . X X .\n" +
+       ". . . X .\n" +
+       ". . X X X"
     end
   end
 

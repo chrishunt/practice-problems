@@ -44,9 +44,19 @@ class Turtle
   end
 
   def draw(commands)
-    commands.lines.each do |command|
-      execute(command)
+    commands.lines.each { |command| execute(command) }
+  end
+
+  def to_s
+    s = ''
+    translate_canvas.each do |column|
+      column.each do |pixel|
+        char = pixel ? 'X' : '.'
+        s += "#{char} "
+      end
+      s = s.strip + "\n"
     end
+    s.strip
   end
 
   private
@@ -99,5 +109,15 @@ class Turtle
   def draw_pixel
     x, y = @position
     @canvas[x][y] = true
+  end
+
+  def translate_canvas
+    translated = Array.new(@size) { Array.new(@size) { false } }
+    @canvas.each_with_index do |column, i|
+      column.each_with_index do |pixel, j|
+        translated[@size-1-j][i] = pixel
+      end
+    end
+    translated
   end
 end
