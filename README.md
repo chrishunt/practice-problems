@@ -74,6 +74,23 @@ input text which contains those characters. For example, given the input text
 
     abbc
 
+Minimum Scalar Product
+----------------------
+You are given two vectors `v1 = (x1,x2,...,xn)` and `v2 = (y1,y2,...,yn)`. The
+scalar product of these vectors is a single number, calculated as
+`x1y1 + x2y2 + ... + xnyn`.
+
+Suppose you are allowed to permute the coordinates of each vector as you wish.
+Choose two permutations such that the scalar product of your two new vectors is
+the smallest possible, and output that minimum scalar product.
+
+For example:
+
+    minProduct([1, 3, -5], [-2, 4, 1])
+      => -25
+    minProduct([1, 2, 3, 4, 5], [1, 0, 1, 0, 1])
+      => 6
+
 More Than Perms
 ---------------
 Given a set of letters and a length N, produce all possible output. (Not permutation).
