@@ -33,6 +33,20 @@ return:
 
     0 1 1 2 3 5
 
+Fuzzy Finder
+------------
+Do you use Textmate or Command-T in Vim? You're probably familiar with the idea
+of a fuzzy search. Write a FuzzyFinder that, given a phrase and term, returns
+true if a fuzzy match can be found. Make your search case insensitive. For
+example:
+
+    FuzzyFinder.include?('Fuzzy Bear', 'Fuzzy') #=> true
+    FuzzyFinder.include?('Fuzzy Bear', 'bear')  #=> true
+    FuzzyFinder.include?('Fuzzy Bear', 'fzyr')  #=> true
+
+    FuzzyFinder.include?('Fuzzy Bear', 'Fazzy') #=> false
+    FuzzyFinder.include?('Fuzzy Bear', 'Fzyz')  #=> false
+
 Job Queue
 ---------
 Write a Ruby job queue that excepts a delay duration and a block, similar to
