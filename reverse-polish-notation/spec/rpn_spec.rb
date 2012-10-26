@@ -1,27 +1,35 @@
 require 'rpn'
 
-describe Rpn, '#calculate' do
+describe Rpn, '#evaluate' do
   it 'returns the correct result with addition' do
-    Rpn.calculate(['2', '3', '+']).should == 5
+    Rpn.evaluate([2, 3, '+']).should == 5
   end
 
   it 'returns the correct result with subtraction' do
-    Rpn.calculate(['5', '1', '-']).should == 4
+    Rpn.evaluate([5, 1, '-']).should == 4
+  end
+
+  it 'returns the correct result with ABS' do
+    Rpn.evaluate([-1, 'ABS']).should == 1
+  end
+
+  it 'returns the correct result with SQRT' do
+    Rpn.evaluate([5, 5, '*', 'SQRT']).should == 5
   end
 
   it 'returns the correct result with multiplication' do
-    Rpn.calculate(['5', '2', '*']).should == 10
+    Rpn.evaluate([5, 2, '*']).should == 10
   end
 
   it 'returns the correct result with division' do
-    Rpn.calculate(['12', '3', '/']).should == 4
-  end
-
-  it 'returns the correct result with two operations' do
-    Rpn.calculate(['12', '3', '/', '2', '+']).should == 6
+    Rpn.evaluate([12, 3, '/']).should == 4
   end
 
   it 'returns the correct result with three operations' do
-    Rpn.calculate(['12', '3', '2', '*', '8', '+', '-']).should == -2
+    Rpn.evaluate([12, 3, 2, '*', 8, '+', '-']).should == -2
+  end
+
+  it 'returns the correct result with four operations' do
+    Rpn.evaluate([12, 3, '/', -1, '*', 'ABS', 2, '+']).should == 6
   end
 end
