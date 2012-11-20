@@ -58,6 +58,22 @@ provide a method to start the worker. For example:
 
     TaskMan.work => 'hello world!'
 
+LRU Cache
+---------
+Come up with a class that acts like a baby version of Memcache. It should
+support string keys and values and a limit on the number of items that it
+stores. When it runs out of space it should evict items in LRU order.
+
+    cache = LRUCache.new(3)
+    cache.set("a", "1")
+    cache.set("b", "2")
+    cache.set("c", "3")
+    cache.get("a")
+    cache.set("d", "4")
+    cache.get("b") #=> nil
+    cache.get("a") #=> "1"
+    cache.get("c") #=> "3"
+
 Luhn Algorithm
 --------------
 The Luhn algorithm, also known as the "mod 10" algorithm, is a simple checksum
