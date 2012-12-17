@@ -26,6 +26,15 @@ For example:
     6.to_b  => '110'
     28.to_b => '11100'
 
+Encoder
+-------
+We need to transmit a collection of strings over the wire to another service.
+Write a utility for encoding a collection of strings into a single string. This
+utility should also be able to decode an encoded string back into the original
+collection of strings.
+
+Your solution must support any character, including empty strings and nil.
+
 Fibonacci
 ---------
 Given N, print the first N Fibonacci numbers. For example, `fib_sequence(6)` should
